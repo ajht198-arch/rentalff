@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nopal Pusat Rental - Sewa Akun FF</title>
+    <style>
+        /* Base Reset & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Blue background with black shading/gradients */
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 40%, #000814 100%);
+            color: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+            display: block;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(13, 27, 42, 0.85);
+            border: 2px solid #00b4d8;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(0, 180, 216, 0.3);
+        }
+
+        /* Header Style with NP Logo */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 180, 216, 0.2);
+            padding-bottom: 20px;
+        }
+
+        .logo-np {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #00b4d8, #0077b6);
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 15px auto;
+            text-align: center;
+            line-height: 80px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 0 15px #00b4d8;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #00b4d8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #a9d6e5;
+            margin-top: 5px;
+        }
+
+        /* Section Styling */
+        h2 {
+            font-size: 18px;
+            color: #00b4d8;
+            margin: 25px 0 15px 0;
+            padding-left: 8px;
+            border-left: 4px solid #00b4d8;
+            text-transform: uppercase;
+        }
+
+        /* Spec Table derived from screenshot */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            background: rgba(0, 8, 20, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .spec-item {
+            font-size: 14px;
+            background: rgba(27, 38, 59, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ffb703;
+        }
+
+        .spec-item span {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Pricing Variant Cards */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 12px;
+        }
+
+        .price-card {
+            background: linear-gradient(145deg, #1b263b, #0d1b2a);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .price-card:hover {
+            border-color: #ffb703;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 183, 3, 0.2);
+        }
+
+        .price-card.selected {
+            border-color: #ffb703;
+            background: linear-gradient(145deg, #1b263b, #001d3d);
+            box-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
+        }
+
+        .price-card h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .price-card .cost {
+            font-size: 18px;
+            color: #ffb703;
+            font-weight: bold;
+        }
+
+        /* Payment Select */
+        .select-payment {
+            width: 100%;
+            padding: 12px;
+            background-color: #1b263b;
+            color: #fff;
+            border: 1px solid rgba(0, 180, 216, 0.4);
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .select-payment:focus {
+            border-color: #ffb703;
+        }
+
+        /* Input Configuration */
+        .input-group {
+            margin-top: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #a9d6e5;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            background-color: #1b263b;
+            color: #fff;
+            border: 1px solid rgba(0, 180, 216, 0.4);
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        /* Action Button */
+        .btn-whatsapp {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 30px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: background 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(45deg, #128c7e, #075e54);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #64dfdf;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-np">NP</div>
+        <h1>Nopal Pusat Rental</h1>
+        <div class="subtitle">Penyewaan Akun Free Fire Premium & Terpercaya</div>
+    </header>
+
+    <!-- Account Specs Section based on screenshot -->
+    <h2>Spesifikasi Akun (Sesuai SS)</h2>
+    <div class="spec-grid">
+        <div class="spec-item">Nickname: <span>acacyi</span></div>
+        <div class="spec-item">Level Akun: <span>LV 59</span></div>
+        <div class="spec-item">Gold: <span>11.795+</span></div>
+        <div class="spec-item">Diamond: <span>0</span></div>
+        <div class="spec-item">Rank Saat Ini: <span>BR-Ranked (Bintang 4)</span></div>
+        <div class="spec-item">Senjata Utama: <span>Evo Gun Blue Dragon (AK47)</span></div>
+        <div class="spec-item">Pet Aktif: <span>Phoenix Api (Pet Falcon Skin)</span></div>
+        <div class="spec-item">Skins & Set: <span>Set Premium Hijau Hitam & Kacamata Keren</span></div>
+    </div>
+
+    <!-- Rental Packages Section -->
+    <h2>Pilih Durasi / Paket Sewa</h2>
+    <div class="price-grid" id="pricingGrid">
+        <!-- Hour variants requested: 1 to 25 hours. Base 1H=5K. We dynamically scale logically or map requested -->
+        <div class="price-card" data-package="Sewa 1 Jam" data-price="5.000">
+            <h3>Sewa 1 Jam</h3>
+            <div class="cost">Rp 5.000</div>
+        </div>
+        <div class="price-card" data-package="Sewa 3 Jam" data-price="12.000">
+            <h3>Sewa 3 Jam</h3>
+            <div class="cost">Rp 12.000</div>
+        </div>
+        <div class="price-card" data-package="Sewa 5 Jam" data-price="18.000">
+            <h3>Sewa 5 Jam</h3>
+            <div class="cost">Rp 18.000</div>
+        </div>
+        <div class="price-card" data-package="Sewa 12 Jam" data-price="30.000">
+            <h3>Sewa 12 Jam</h3>
+            <div class="cost">Rp 30.000</div>
+        </div>
+        <div class="price-card" data-package="Sewa 25 Jam" data-price="55.000">
+            <h3>Sewa 25 Jam</h3>
+            <div class="cost">Rp 55.000</div>
+        </div>
+        <!-- Special Packages requested -->
+        <div class="price-card" data-package="Paket Malem" data-price="15.000">
+            <h3>Paket Malem</h3>
+            <div class="cost">Rp 15.000</div>
+        </div>
+        <div class="price-card" data-package="Paket Subuh" data-price="15.000">
+            <h3>Paket Subuh</h3>
+            <div class="cost">Rp 15.000</div>
+        </div>
+    </div>
+
+    <!-- Payment Methods Section -->
+    <h2>Metode Pembayaran</h2>
+    <select class="select-payment" id="paymentMethod">
+        <option value="">-- Pilih Metode Pembayaran --</option>
+        <option value="DANA">DANA</option>
+        <option value="OVO">OVO</option>
+        <option value="Gopay">Gopay</option>
+        <option value="ShopeePay">ShopeePay</option>
+        <option value="QRIS / All Bank">QRIS / All Bank</option>
+    </select>
+
+    <!-- User identity for WhatsApp text personalization -->
+    <div class="input-group">
+        <label for="renterName">Nama Penyewa:</label>
+        <input type="text" id="renterName" class="input-field" placeholder="Masukkan nama Anda..." required>
+    </div>
+
+    <!-- Order Button -->
+    <button class="btn-whatsapp" onclick="sendOrder()">SEWA SEKARANG VIA WHATSAPP</button>
+
+    <footer>
+        &copy; 2026 Nopal Pusat Rental. All Rights Reserved.
+    </footer>
+</div>
+
+<script>
+    let selectedPackage = "";
+    let selectedPrice = "";
+
+    // Add click events to price cards
+    const cards = document.querySelectorAll('.price-card');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            cards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedPackage = card.getAttribute('data-package');
+            selectedPrice = card.getAttribute('data-price');
+        });
+    });
+
+    function sendOrder() {
+        // --- KONFIGURASI NOMOR WHATSAPP ---
+        // Ganti nomor di bawah ini dengan nomor WhatsApp Anda (Gunakan kode negara, misal 628xxx)
+        const nomorWhatsapp = "628211046470"; 
+
+        const namaPenyewa = document.getElementById('renterName').value.trim();
+        const metodeBayar = document.getElementById('paymentMethod').value;
+
+        if (!selectedPackage) {
+            alert("Silakan pilih durasi atau paket sewa terlebih dahulu!");
+            return;
+        }
+        if (!metodeBayar) {
+            alert("Silakan pilih metode pembayaran terlebih dahulu!");
+            return;
+        }
+        if (!namaPenyewa) {
+            alert("Silakan masukkan nama penyewa!");
+            return;
+        }
+
+        // Formulate WhatsApp message text
+        const pesan = `Halo Nopal Pusat Rental, saya ingin menyewa akun FF dengan detail berikut:%0A%0A` +
+                      `• *Nama Penyewa:* ${namaPenyewa}%0A` +
+                      `• *Paket Sewa:* ${selectedPackage}%0A` +
+                      `• *Harga:* Rp ${selectedPrice}%0A` +
+                      `• *Metode Pembayaran:* ${metodeBayar}%0A%0A` +
+                      `Mohon segera diproses ya, terima kasih!`;
+
+        // Redirect to WhatsApp
+        window.open(`https://api.whatsapp.com/send?phone=${nomorWhatsapp}&text=${pesan}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
